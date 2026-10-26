@@ -1,0 +1,54 @@
+# ─────────────────────────────────────────────
+# Parallel Ensemble Transformer Inference
+# Central Configuration
+# ─────────────────────────────────────────────
+
+seed: 42
+max_seq_len: 128
+num_labels: 4
+batch_size: 32
+
+# Dataset
+dataset:
+  name: ag_news
+  train_subset: 20000      # samples for fine-tuning
+  large_workload: 100000   # repeat test set to reach this size
+  label_names: ["World", "Sports", "Business", "Sci/Tech"]
+
+# Models
+models:
+  bert: bert-base-uncased
+  roberta: roberta-base
+  electra: google/electra-base-discriminator
+
+# Training
+training:
+  epochs: 2
+  learning_rate: 2.0e-5
+  weight_decay: 0.01
+  warmup_ratio: 0.1
+  per_device_train_batch_size: 16
+  per_device_eval_batch_size: 32
+  fp16: true
+  save_strategy: epoch
+  eval_strategy: epoch
+  load_best_model_at_end: true
+  metric_for_best_model: accuracy
+
+# Paths
+paths:
+  checkpoints: checkpoints
+  results: results
+  plots: results/plots
+  data_cache: data_cache
+
+# Benchmark
+benchmark:
+  warmup_runs: 1
+  timed_runs: 3
+  batch_sizes: [16, 32, 64, 128]
+
+# Inference
+inference:
+  fp16_gpu: true
+  num_workers: 4

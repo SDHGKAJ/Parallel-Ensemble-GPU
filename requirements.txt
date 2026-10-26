@@ -1,0 +1,15 @@
+torch==2.5.1
+transformers==4.47.1
+datasets==3.6.0
+huggingface-hub>=0.27,<1.0
+tokenizers>=0.20,<0.22
+scikit-learn>=1.4
+matplotlib>=3.8
+pandas>=2.0
+pyyaml>=6.0
+tqdm>=4.66
+accelerate>=0.27
+seaborn>=0.13
+evaluate>=0.4
+numpy>=1.24
+safetensors>=0.4
